@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Section</title>
+    <link rel="stylesheet" href="teacher1.css">
+</head>
+<body>
+    <section class="teacher-section">
+        <div class="container">
+            <h2>Meet Our Teachers</h2>
+
+            <!-- Teacher Profiles -->
+            <div class="teacher-profile">
+                <img src="teacher1.jpg" alt="Teacher 1" class="teacher-image">
+                <h3>John Doe</h3>
+                <p class="teacher-info">Web Development Specialist</p>
+                <button class="chat-button" onclick="startChat('John Doe')">Chat with John</button>
+            </div>
+
+            <div class="teacher-profile">
+                <img src="teacher2.jpg" alt="Teacher 2" class="teacher-image">
+                <h3>Jane Smith</h3>
+                <p class="teacher-info">Data Science Expert</p>
+                <button class="chat-button" onclick="startChat('Jane Smith')">Chat with Jane</button>
+            </div>
+
+            <div class="teacher-profile">
+                <img src="teacher3.jpg" alt="Teacher 3" class="teacher-image">
+                <h3>Alice Brown</h3>
+                <p class="teacher-info">AI & Machine Learning Mentor</p>
+                <button class="chat-button" onclick="startChat('Alice Brown')">Chat with Alice</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Modal (Hidden by default) -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-content">
+            <span class="close" onclick="closeChat()">×</span>
+            <h2>Chat with <span id="teacher-name"></span></h2>
+            <div class="chat-window">
+                <div class="messages" id="messages"></div>
+                <input type="text" id="chat-input" placeholder="Type your message..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="teacher1.js"></script>
+</body>
+</html>

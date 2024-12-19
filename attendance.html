@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f4f6f9;
+      color: #333;
+    }
+
+    /* Header Section */
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 24px;
+      color: #ff6363;
+    }
+
+    /* Attendance Table */
+    .attendance-container {
+      padding: 30px;
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .attendance-container h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    table th {
+      background-color: #1f2937;
+      color: white;
+    }
+
+    table td input {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    .date-container {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .date-container p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #ff6363;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #cc5050;
+    }
+
+    /* History Section */
+    .history-container {
+      padding: 30px;
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .history-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .history-table th, .history-table td {
+      text-align: center;
+      padding: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .history-table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    .edit-btn {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .edit-btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Calendar Input */
+    .calendar-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>RYAN INTERNATIONAL SCHOOL</h1>
+  </header>
+
+  <!-- Attendance Section -->
+  <div class="attendance-container">
+    <h2>Mark Attendance</h2>
+
+    <!-- Calendar Input -->
+    <div class="calendar-container">
+      <input type="date" id="attendanceDate" value="" onchange="updateDate()">
+    </div>
+
+    <!-- Date Display -->
+    <div class="date-container">
+      <p id="currentDate"></p>
+    </div>
+
+    <!-- Attendance Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Present</th>
+          <th>Absent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td><input type="radio" name="attendance1" value="present"></td>
+          <td><input type="radio" name="attendance1" value="absent"></td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td><input type="radio" name="attendance2" value="present"></td>
+          <td><input type="radio" name="attendance2" value="absent"></td>
+        </tr>
+        <tr>
+          <td>Michael Johnson</td>
+          <td><input type="radio" name="attendance3" value="present"></td>
+          <td><input type="radio" name="attendance3" value="absent"></td>
+        </tr>
+        <tr>
+          <td>Emily Davis</td>
+          <td><input type="radio" name="attendance4" value="present"></td>
+          <td><input type="radio" name="attendance4" value="absent"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Submit Button -->
+    <button class="submit-btn" onclick="submitAttendance()">Submit Attendance</button>
+  </div>
+
+  <!-- History Section -->
+  <div class="history-container">
+    <h2>Attendance History</h2>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Student Name</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="historyList">
+        <!-- Attendance history will be populated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Initialize current date
+    function displayCurrentDate() {
+      const date = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const currentDate = date.toLocaleDateString('en-US', options);
+      document.getElementById('currentDate').innerText = `Date: ${currentDate}`;
+    }
+
+    // Update the displayed date from the calendar input
+    function updateDate() {
+      const selectedDate = document.getElementById("attendanceDate").value;
+      document.getElementById("currentDate").innerText = `Selected Date: ${selectedDate}`;
+    }
+
+    // Handle Attendance Submission
+    function submitAttendance() {
+      const attendanceData = [];
+      const selectedDate = document.getElementById("attendanceDate").value || new Date().toLocaleDateString();
+
+      // Collect Attendance Data
+      for (let i = 1; i <= 4; i++) {
+        const present = document.querySelector(`input[name="attendance${i}"]:checked`);
+        const studentName = document.querySelector(`tr:nth-child(${i}) td:first-child`).innerText;
+        const status = present ? present.value : 'Absent';
+        attendanceData.push({ studentName, status, date: selectedDate });
+      }
+
+      // Save Attendance to LocalStorage
+      let history = JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+      const newRecordId = history.length ? history[history.length - 1].id + 1 : 1; // Ensure numerical order
+      attendanceData.forEach((data) => {
+        history.push({ ...data, id: newRecordId++ });
+      });
+      localStorage.setItem("attendanceHistory", JSON.stringify(history));
+
+      // Update Attendance History
+      loadAttendanceHistory();
+
+      alert("Attendance Submitted Successfully!");
+    }
+
+    // Load Attendance History from LocalStorage
+    function loadAttendanceHistory() {
+      const history = JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+      const historyList = document.getElementById("historyList");
+      historyList.innerHTML = ""; // Clear existing history
+
+      // Sort attendance by date and numerical order (id)
+      history.sort((a, b) => new Date(a.date) - new Date(b.date) || a.id - b.id);
+
+      history.forEach((entry) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${entry.date}</td>
+          <td>${entry.studentName}</td>
+          <td>${entry.status}</td>
+          <td><button class="edit-btn" onclick="editAttendance(${entry.id})">Edit</button></td>
+        `;
+        historyList.appendChild(row);
+      });
+    }
+
+    // Edit Attendance
+    function editAttendance(id) {
+      const history = JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+      const record = history.find(r => r.id === id);
+      if (record) {
+        // Fill in the form with the data of the selected record for editing
+        document.getElementById("attendanceDate").value = record.date;
+        document.querySelector(`input[name="attendance1"][value="${record.status.toLowerCase()}"]`).checked = true;
+        alert("Editing attendance for " + record.studentName);
+      }
+    }
+
+    // Initial call to display current date and load attendance history
+    window.onload = function() {
+      displayCurrentDate();
+      loadAttendanceHistory();
+    };
+  </script>
+</body>
+</html>

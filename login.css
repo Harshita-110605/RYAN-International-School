@@ -1,0 +1,68 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(login\ image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#login{
+    background-color: white;
+    width: 300px;
+    box-shadow: 0 0 10px black;
+    border-radius: 8px;
+    padding: 20px;
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(39, 195, 39);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    /* text-decoration: none; */
+}
+button:hover{
+    background-color: rgb(21, 166, 21);
+}
+.signup{
+    text-align: center;
+    margin-top: 15px;
+}
+.signup a {
+    color: #007bff;
+    text-decoration: none;
+}
+.signup a:hover{
+    text-decoration: underline;
+}
+.lo{
+    text-decoration: none;
+}
+
+

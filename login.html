@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="login">
+        <h2>LOGIN</h2>
+        <form>
+            <div class="form">
+            <label for="name">Username</label>
+                <input type="text" id="name" placeholder="" required>
+            </div>
+            <div class="form">
+            <label for="password">Password</label>
+                <input type="password" id="password" placeholder="" required>
+                </div> <br>
+        <button  type="submit"> <a href="dashboard2.html" class="lo">login</a></button>
+        </form>
+        <div class="signup">
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+    </div>
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="login.css">
+    
+</head>
+<body>
+    <div id="login">
+        <h2>LOGIN</h2>
+        <form onsubmit="validateLogin(event)">
+            <div class="form">
+                <label for="name">Username</label>
+                <input type="text" id="name" placeholder="Enter your username" required>
+            </div>
+            <div class="form">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div> 
+            <br>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+
+            // Example credentials (you can modify these)
+            const validUsername = 'admin';
+            const validPassword = 'pass123';
+
+            if (username === validUsername && password === validPassword) {
+                alert('Login Successful!');
+                window.location.href = 'dashboard2.html'; // Redirect on success
+            } else {
+                alert('Login Failed! Invalid username or password.');
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="login">
+        <h2>LOGIN</h2>
+        <form onsubmit="validateLogin(event)">
+            <div class="form">
+                <label for="name">Username</label>
+                <input type="text" id="name" placeholder="Enter your username" required>
+            </div>
+            <div class="form">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div> 
+            <br>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve stored credentials from localStorage
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert('Login Successful!');
+                window.location.href = 'dashboard2.html'; // Redirect on success
+            } else {
+                alert('Login Failed! Invalid username or password.');
+            }
+        }
+    </script>
+</body>
+</html>
